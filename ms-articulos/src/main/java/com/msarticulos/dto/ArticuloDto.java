@@ -15,11 +15,9 @@ public class ArticuloDto {
     @NotBlank
     private Integer codigoInterno;
     private String descripcionTiquete;
-//    private Double costoUltimo;
     private String codigoCABYS;
     private String CodigoBarra;
     private List<PrecioDto> precios;
-//    private PumDto pum;
     private PromocionDto promocion;
     private Boolean esFresco;
     private Boolean esFraccion;

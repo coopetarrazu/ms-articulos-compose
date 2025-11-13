@@ -7,7 +7,6 @@ public class PromocionDto {
 
     private String tipo;
     private Double porcentajeDescuento;
-    private Double costoUltimo;
     private Double precioVenta;
     private String descripcion;
     private Double monto;
