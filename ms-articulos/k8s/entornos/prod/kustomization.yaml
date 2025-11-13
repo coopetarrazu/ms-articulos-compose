@@ -1,0 +1,19 @@
+namespace: inventario
+images:
+  - name: 10.1.10.13:5000/ms-articulos
+    newName: 10.1.10.13:5000/prod/articulos/ms-articulos
+    newTag: v1.0.0
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Ingress
+      name: ms-articulo-compose-ingress
+    patch: |-
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: api.coopetarrazu.com
+      - op: replace
+        path: /spec/rules/0/host
+        value: api.coopetarrazu.com

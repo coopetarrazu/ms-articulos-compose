@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-articulo-compose-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-articulo-compose
+  template:
+    metadata:
+      labels:
+        app: ms-articulo-compose
+    spec:
+      containers:
+        - name: ms-articulo-compose
+          image: 10.1.10.13:5000/ms-articulos:v1.0.0
+          envFrom:
+            - configMapRef:
+                name: ms-config
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always

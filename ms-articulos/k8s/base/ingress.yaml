@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ms-articulo-compose-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: "nginx-interno" # Asegúrate de que esta línea esté presente
+  tls:
+    - hosts:
+        - inventario.coopetarrazu.dev
+      secretName: articulos-tls-secret
+  rules:
+    - host: inventario.coopetarrazu.dev
+      http:
+        paths:
+          - path: /articulos
+            pathType: Prefix
+            backend:
+              service:
+                name: ms-articulo-compose-svc
+                port:
+                  number: 80
+          - path: /articulos/docs
+            pathType: Prefix
+            backend:
+              service:
+                name: ms-articulo-compose-svc
+                port:
+                  number: 80
