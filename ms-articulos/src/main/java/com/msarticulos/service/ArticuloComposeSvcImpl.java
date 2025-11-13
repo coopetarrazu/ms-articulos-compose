@@ -80,7 +80,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 30 -> {
 
-                    Optional<ArticuloDto> articulo = insumosSanJuanClient.buscarPorCodigo(codigo);
+                    Optional<ArticuloDto> articulo = ferreSanJuanClient.buscarPorCodigo(codigo);
                     if (articulo.isEmpty()) {
                         LOGGER.error("Error al consultar la información en la unidad Insumos Bajo San Juan del articulo con el codigo: {}", codigo);
                         throw new ServiceException("Error al consultar la información del articulo: " + codigo, HttpStatus.NOT_FOUND);
@@ -92,7 +92,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 31 -> {
 
-                    Optional<ArticuloDto> articulo = ferreSanJuanClient.buscarPorCodigo(codigo);
+                    Optional<ArticuloDto> articulo = insumosSanJuanClient.buscarPorCodigo(codigo);
                     if (articulo.isEmpty()) {
                         LOGGER.error("Error al consultar la información en la unidad  Ferreteria Bajo San Juan del articulo con el codigo: {}", codigo);
                         throw new ServiceException("Error al consultar la información del articulo: " + codigo, HttpStatus.NOT_FOUND);
@@ -181,7 +181,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 30 -> {
 
-                    Optional<PaginaDto> articulos = insumosSanJuanClient.buscarPorDescripcion(descripcion, fresco, pagina);
+                    Optional<PaginaDto> articulos = ferreSanJuanClient.buscarPorDescripcion(descripcion, fresco, pagina);
                     if (articulos.isEmpty()) {
                         LOGGER.error("Error al consultar la información en Insumos Bajo San Juan del articulo con la descripcion: {}", descripcion);
                         throw new ServiceException("Error al consultar la información del articulo: " + descripcion, HttpStatus.NOT_FOUND);
@@ -193,7 +193,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 31 -> {
 
-                    Optional<PaginaDto> articulos = ferreSanJuanClient.buscarPorDescripcion(descripcion, fresco, pagina);
+                    Optional<PaginaDto> articulos = insumosSanJuanClient.buscarPorDescripcion(descripcion, fresco, pagina);
                     if (articulos.isEmpty()) {
                         LOGGER.error("Error al consultar la información en Ferreteria Bajo San Juan del articulo con la descripcion: {}", descripcion);
                         throw new ServiceException("Error al consultar la información del articulo: " + descripcion, HttpStatus.NOT_FOUND);
@@ -284,7 +284,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 30 -> {
 
-                    List<ArticuloDto> inventario = insumosSanJuanClient.cargarArticulos(codigoBodega);
+                    List<ArticuloDto> inventario = ferreSanJuanClient.cargarArticulos(codigoBodega);
                     if (inventario.isEmpty()) {
                         LOGGER.error("Error al cargar el inventario de articulos en Insumos Bajo San Juan para la bodega: {}", codigoBodega);
                         throw new ServiceException("Error al consultar la información de inventario de articulos de la bodega: " + codigoBodega, HttpStatus.NOT_FOUND);
@@ -295,7 +295,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 31 -> {
 
-                    List<ArticuloDto> inventario = ferreSanJuanClient.cargarArticulos(codigoBodega);
+                    List<ArticuloDto> inventario = insumosSanJuanClient.cargarArticulos(codigoBodega);
                     if (inventario.isEmpty()) {
                         LOGGER.error("Error al cargar el inventario de articulos en Ferreteria Bajo San Juan para la bodega: {}", codigoBodega);
                         throw new ServiceException("Error al consultar la información de inventario de articulos de la bodega: " + codigoBodega, HttpStatus.NOT_FOUND);
@@ -386,7 +386,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 30 -> {
 
-                    List<PrecioDto> precios = insumosSanJuanClient.cargarPrecios(codigoBodega);
+                    List<PrecioDto> precios = ferreSanJuanClient.cargarPrecios(codigoBodega);
                     if (precios.isEmpty()) {
                         LOGGER.error("Error al cargar la lista de precios en Insusmos Bajo San Juan para la bodega: {}", codigoBodega);
                         throw new ServiceException("Error al consultar la información de lista de precios para la bodega: " + codigoBodega, HttpStatus.NOT_FOUND);
@@ -397,7 +397,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 31 -> {
 
-                    List<PrecioDto> precios = ferreSanJuanClient.cargarPrecios(codigoBodega);
+                    List<PrecioDto> precios = insumosSanJuanClient.cargarPrecios(codigoBodega);
                     if (precios.isEmpty()) {
                         LOGGER.error("Error al cargar la lista de precios en Ferreteria Bajo San Juan para la bodega: {}", codigoBodega);
                         throw new ServiceException("Error al consultar la información de lista de precios para la bodega: " + codigoBodega, HttpStatus.NOT_FOUND);
@@ -531,7 +531,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 30 -> {
 
-                    List<CajaDto> cajas = insumosSanJuanClient.listarCajas();
+                    List<CajaDto> cajas = ferreSanJuanClient.listarCajas();
                     if (cajas.isEmpty()) {
                         LOGGER.error("Error al cargar la lista de cajas en Insumos Bajo San Juan");
                         throw new ServiceException("Error al consultar la información de cajas", HttpStatus.NOT_FOUND);
@@ -541,7 +541,7 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 31 -> {
 
-                    List<CajaDto> cajas = ferreSanJuanClient.listarCajas();
+                    List<CajaDto> cajas = insumosSanJuanClient.listarCajas();
                     if (cajas.isEmpty()) {
                         LOGGER.error("Error al cargar la lista de cajas en Ferreteria Bajo San Juan");
                         throw new ServiceException("Error al consultar la información de cajas", HttpStatus.NOT_FOUND);
