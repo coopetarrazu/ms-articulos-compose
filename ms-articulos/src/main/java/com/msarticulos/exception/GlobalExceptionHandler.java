@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ServiceException.class)
     public ResponseEntity<Respuesta> handlePersonaServiceException(ServiceException ex) {
-        LOGGER.error("Error en servicio de persona: {}", ex.getMessage(), ex);
+        LOGGER.error("Error en servicio de inventario: {}", ex.getMessage(), ex);
         return ResponseEntity.status(ex.getHttpStatus())
                 .body(new Respuesta(ex.getMessage()));
     }
