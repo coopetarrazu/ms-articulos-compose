@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /articulos
-  port: 8081
+  port: 80
 
 spring:
   application:
@@ -19,21 +19,21 @@ springdoc:
     path: /v3/api-docs
 
 # Variables de servicios internos
-#BUENDIA: http://ms-articulo-compose-svc.buendia-dev.svc.cluster.local
-#BODEGA: http://ms-articulo-compose-svc.bodega-dev.svc.cluster.local
-#FERRETERIA: http://ms-articulo-compose-svc.ferreteria-dev.svc.cluster.local
-#INSUMOS: http://ms-articulo-compose-svc.insumos-dev.svc.cluster.local
-#SANCARLOS: http://ms-articulo-compose-svc.sancarlos-dev.svc.cluster.local
-#RIOCONEJO: http://ms-articulo-compose-svc.rioconejo-dev.svc.cluster.local
-#SANPABLO: http://ms-articulo-compose-svc.sanpablo-dev.svc.cluster.local
+BUENDIA: http://ms-articulo-compose-svc.buendia-dev.svc.cluster.local
+BODEGA: http://ms-articulo-compose-svc.bodega-dev.svc.cluster.local
+FERRETERIA: http://ms-articulo-compose-svc.ferreteria-dev.svc.cluster.local
+INSUMOS: http://ms-articulo-compose-svc.insumos-dev.svc.cluster.local
+SANCARLOS: http://ms-articulo-compose-svc.sancarlos-dev.svc.cluster.local
+RIOCONEJO: http://ms-articulo-compose-svc.rioconejo-dev.svc.cluster.local
+SANPABLO: http://ms-articulo-compose-svc.sanpablo-dev.svc.cluster.local
 
-BUENDIA: http://localhost:8080
-BODEGA: http://localhost:8080
-FERRETERIA: http://localhost:8080
-INSUMOS: http://localhost:8080
-SANCARLOS: http://localhost:8080
-RIOCONEJO: http://localhost:8080
-SANPABLO: http://localhost:8080
+#BUENDIA: http://localhost:8080
+#BODEGA: http://localhost:8080
+#FERRETERIA: http://localhost:8080
+#INSUMOS: http://localhost:8080
+#SANCARLOS: http://localhost:8080
+#RIOCONEJO: http://localhost:8080
+#SANPABLO: http://localhost:8080
 
 SEGURIDAD:
   host: ${MS_AUTH:https://seguridad.coopetarrazu.dev}

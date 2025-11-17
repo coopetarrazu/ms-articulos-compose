@@ -18,6 +18,7 @@ public class ArticuloDto {
     private String codigoCABYS;
     private String CodigoBarra;
     private List<PrecioDto> precios;
+    private List<LoteExistenciaDto> existenciaPorLotes;
     private PromocionDto promocion;
     private Boolean esFresco;
     private Boolean esFraccion;
