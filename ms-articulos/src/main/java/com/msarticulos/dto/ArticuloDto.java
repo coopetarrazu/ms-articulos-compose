@@ -23,6 +23,7 @@ public class ArticuloDto {
     private Boolean esFresco;
     private Boolean esFraccion;
     private Double cantidad;
+    private List<ArchivoDtos> archivos;
 
 
 

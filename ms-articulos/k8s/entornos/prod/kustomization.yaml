@@ -2,7 +2,7 @@ namespace: inventario
 images:
   - name: 10.1.10.13:5000/ms-articulos
     newName: 10.1.10.13:5000/prod/articulos/ms-articulos
-    newTag: v1.0.0
+    newTag: v1.0.1
 resources:
   - ../../base
 

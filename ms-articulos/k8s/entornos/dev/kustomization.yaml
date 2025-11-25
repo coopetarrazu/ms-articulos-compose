@@ -2,6 +2,6 @@ namespace: inventario-dev
 images:
   - name: 10.1.10.13:5000/ms-articulo-compose
     newName: 10.1.10.13:5000/dev/articulos/ms-articulos
-    newTag: v1.0.0
+    newTag: v1.0.1
 resources:
   - ../../base
