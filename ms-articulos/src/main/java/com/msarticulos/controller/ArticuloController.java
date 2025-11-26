@@ -360,7 +360,7 @@ public class ArticuloController {
             )
     })
 
-    @GetMapping
+    @GetMapping("/{unidad}/promociones")
     private ResponseEntity<?> consultarPromociones(@Parameter(
             description = """
                     Unidad comercial que está solicitando el dato.<br><br>
