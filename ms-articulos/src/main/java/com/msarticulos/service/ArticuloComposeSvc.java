@@ -1,9 +1,6 @@
 package com.msarticulos.service;
 
-import com.msarticulos.dto.ArticuloDto;
-import com.msarticulos.dto.CajaDto;
-import com.msarticulos.dto.PaginaDto;
-import com.msarticulos.dto.PrecioDto;
+import com.msarticulos.dto.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,5 +18,7 @@ public interface ArticuloComposeSvc {
     List<ArticuloDto>  preciosCliente(Integer unidad, String tipoIdentificacion, String identificacion);
 
     List<CajaDto> listarCajas(Integer unidad);
+
+    List<SolicitudPromocionDto> consultaPromociones(Integer unidad);
 
 }

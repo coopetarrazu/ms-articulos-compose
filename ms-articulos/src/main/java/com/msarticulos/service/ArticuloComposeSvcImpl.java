@@ -1,10 +1,7 @@
 package com.msarticulos.service;
 
 import com.msarticulos.client.*;
-import com.msarticulos.dto.ArticuloDto;
-import com.msarticulos.dto.CajaDto;
-import com.msarticulos.dto.PaginaDto;
-import com.msarticulos.dto.PrecioDto;
+import com.msarticulos.dto.*;
 import com.msarticulos.exception.ServiceException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -566,6 +563,91 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
         } catch (feign.FeignException e) {
             LOGGER.error("Error Feign al comunicarse los servicio de inventarioClient.listarCajas: {}", e.getMessage());
+            throw new ServiceException("Error de comunicación con el servicio de consulta de cajas.", HttpStatus.BAD_GATEWAY);
+
+        } catch (ServiceException ex) {
+            throw ex;
+        } catch (RuntimeException e) {
+            LOGGER.error("Error inesperado al consultar las cajas disponibles: {}", e.getMessage(), e);
+            throw new ServiceException("Error interno al consultar las cajas disponibles.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public List<SolicitudPromocionDto> consultaPromociones(Integer unidad) {
+        try{
+
+            switch (unidad) {
+
+                case 6 -> {
+                    List<SolicitudPromocionDto> promociones = sanCarlosClient.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en San Carlos");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+                case 9 -> {
+                    List<SolicitudPromocionDto> promociones = buenDiaClient.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en Buen Dia");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+
+                case 12 -> {
+                    List<SolicitudPromocionDto> promociones = bodegaClientRest.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en Bodega Mayorista");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+                case 15 -> {
+                    List<SolicitudPromocionDto> promociones = sanPabloClient.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en San Pablo");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+                case 30 -> {
+                    List<SolicitudPromocionDto> promociones = ferreSanJuanClient.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en Ferreteria Bajo San Juan");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+                case 31-> {
+                    List<SolicitudPromocionDto> promociones = bodegaClientRest.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en Insumos Bajo San Juan");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+
+                case 32-> {
+                    List<SolicitudPromocionDto> promociones = rioConejoClient.consultaPromociones();
+                    if (promociones.isEmpty()) {
+                        LOGGER.error("Error al cargar la lista de promociones en Rio Conejo");
+                        throw new ServiceException("Error al consultar la información de promociones", HttpStatus.NOT_FOUND);
+                    }
+                    return promociones;
+                }
+                default ->
+                        throw new ServiceException("Error al consultar la información de lista de promociones: ", HttpStatus.NOT_FOUND);
+            }
+
+        } catch (feign.FeignException e) {
+            LOGGER.error("Error Feign al comunicarse los servicio de inventarioClient.promociones: {}", e.getMessage());
             throw new ServiceException("Error de comunicación con el servicio de consulta de cajas.", HttpStatus.BAD_GATEWAY);
 
         } catch (ServiceException ex) {

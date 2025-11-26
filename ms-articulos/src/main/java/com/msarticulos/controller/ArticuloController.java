@@ -1,9 +1,6 @@
 package com.msarticulos.controller;
 
-import com.msarticulos.dto.ArticuloDto;
-import com.msarticulos.dto.PaginaDto;
-import com.msarticulos.dto.PrecioDto;
-import com.msarticulos.dto.Respuesta;
+import com.msarticulos.dto.*;
 import com.msarticulos.enums.ProductoTerminado;
 import com.msarticulos.enums.UnidadComercial;
 import com.msarticulos.service.ArticuloComposeSvc;
@@ -331,5 +328,58 @@ public class ArticuloController {
             return ResponseEntity.status(404).body(new Respuesta("No se encontraron artículos en la bodega indicada."));
         }
         return new ResponseEntity<Object>(preciosCliente, HttpStatus.OK);
+    }
+
+
+    /// /////////////////////////////CONSULTA DE PROMOCIONES DISPONIBLES POR DEPARTAMENTO//////////////////////////////////////////////////
+    @Operation(summary = "Promociones disponibles", description = "Carga las promociones disponibles en un departamento especifico")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de promociones disponibles por departamento",
+                    content = @io.swagger.v3.oas.annotations.media.Content(
+                            mediaType = "application/json",
+                            array = @io.swagger.v3.oas.annotations.media.ArraySchema(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = SolicitudPromocionDto.class))
+                    )
+            ),
+            @ApiResponse(responseCode = "404", description = "No se encontraron promociones disponibles",
+                    content = @io.swagger.v3.oas.annotations.media.Content(
+                            mediaType = "application/json",
+                            schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = Respuesta.class),
+                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                    value = "{\"mensaje\": \"No se encontraron promociones disponibles.\"}"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+                    content = @io.swagger.v3.oas.annotations.media.Content(
+                            mediaType = "application/json",
+                            schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = Respuesta.class),
+                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                    value = "{\"mensaje\": \"Error interno del servidor\"}"
+                            )
+                    )
+            )
+    })
+
+    @GetMapping
+    private ResponseEntity<?> consultarPromociones(@Parameter(
+            description = """
+                    Unidad comercial que está solicitando el dato.<br><br>
+                                                   <ul>
+                                                       <li><b>PRODUCTO_TERMINADO</b> – Producto terminado (Buen día)</li>
+                                                       <li><b>BODEGA_MAYORISTA</b> – Bodega Mayorista</li>
+                                                       <li><b>FERRETERIA</b> – Ferretería Bajo San Juan</li>
+                                                       <li><b>INSUMOS</b> – Insumos Bajo San Juan</li>
+                                                       <li><b>INSUMOS_AGRO_CONEJO</b> – Suministros Río Conejo</li>
+                                                       <li><b>INSUMOS_SAN_CARLOS</b> – Suministros San Carlos</li>
+                                                       <li><b>INSUMOS_LEON_CORTES</b> – Suministros León Cortés</li>
+                                                   </ul>
+                                                  \s"""
+    )
+                                                   @PathVariable UnidadComercial unidad) {
+        List<SolicitudPromocionDto> promociones = articuloComposeSvc.consultaPromociones(unidad.getCodigo());
+        if (promociones.isEmpty()) {
+            return ResponseEntity.status(404).body(new Respuesta("No se encontraron promociones disponibles para la unidad especificada."));
+        }
+        return new ResponseEntity<Object>(promociones, HttpStatus.OK);
     }
 }

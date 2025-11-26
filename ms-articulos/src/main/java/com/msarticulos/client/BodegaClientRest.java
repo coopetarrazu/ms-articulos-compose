@@ -1,11 +1,9 @@
 package com.msarticulos.client;
 
 import com.commons_seguridad.config.PropagateHeaders;
-import com.msarticulos.dto.ArticuloDto;
-import com.msarticulos.dto.CajaDto;
-import com.msarticulos.dto.PaginaDto;
-import com.msarticulos.dto.PrecioDto;
+import com.msarticulos.dto.*;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,5 +34,8 @@ public interface BodegaClientRest {
 
     @GetMapping("/caja/listar")
     List<CajaDto> listarCajas();
+
+    @GetMapping("/articulo/promociones")
+    List<SolicitudPromocionDto> consultaPromociones();
 
 }
