@@ -13,5 +13,6 @@ public class DetallePromocionDto {
     private BigDecimal porcentajeDescuento;
     private BigDecimal precioPropuesto;
     private BigDecimal precioVenta;
+    private BigDecimal cantidadLimite;
 
 }
