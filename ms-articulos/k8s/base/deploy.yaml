@@ -15,9 +15,48 @@ spec:
       containers:
         - name: ms-articulo-compose
           image: 10.1.10.13:5000/ms-articulos:v1.0.0
+
+          # 🔵 Ejecutar importación de certificados antes de iniciar la app
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "📌 Importando certificados SSL..."
+
+              # Importar certificado del dominio
+              keytool -importcert \
+                -file /opt/certs/cert.crt \
+                -alias cert-coopetarrazu \
+                -keystore $JAVA_HOME/lib/security/cacerts \
+                -storepass changeit \
+                -noprompt ;
+
+              # Importar CA raíz
+              keytool -importcert \
+                -file /opt/certs/ca-root.crt \
+                -alias ca-root-coopetarrazu \
+                -keystore $JAVA_HOME/lib/security/cacerts \
+                -storepass changeit \
+                -noprompt ;
+
+              echo "🚀 Iniciando microservicio..." ;
+              java -jar app.jar
+
           envFrom:
             - configMapRef:
                 name: ms-config
+
           ports:
             - containerPort: 80
+
           imagePullPolicy: Always
+
+          volumeMounts:
+            # 🔵 Monta TODOS los certificados del ConfigMap en la carpeta
+            - name: cert-prod-coopetarrazu
+              mountPath: /opt/certs
+
+      volumes:
+        # 🔵 ConfigMap con ambos certificados
+        - name: cert-prod-coopetarrazu
+          configMap:
+            name: cert-prod-coopetarrazu

@@ -32,8 +32,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             "/swagger-config",
             "/articulos/docs",
             "/articulos/swagger-ui",
-            "/articulos/v3/api-docs"
-    );
+            "/articulos/v3/api-docs",
+
+            "/articulos/archivo/descargar"
+ );
 
 //    /swagger-ui/index.html
 ///swagger-ui/swagger-ui.css
