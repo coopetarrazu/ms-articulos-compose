@@ -5,7 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
-  ingressClassName: "nginx-interno" # Asegúrate de que esta línea esté presente
+  ingressClassName: "nginx-externo" # Asegúrate de que esta línea esté presente
   tls:
     - hosts:
         - inventario.coopetarrazu.dev
