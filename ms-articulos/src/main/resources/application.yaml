@@ -1,9 +1,17 @@
 server:
+  tomcat:
+    connection-timeout: 10m
   servlet:
     context-path: /articulos
   port: 80
-
 spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 600000
+            readTimeout: 600000
   application:
     name: ms-articulos
   profiles:
