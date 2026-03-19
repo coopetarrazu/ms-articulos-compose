@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PrecioDto {
-
     private Integer codigoInterno;
     private String tipo;
     private Float impuesto;
@@ -20,6 +19,5 @@ public class PrecioDto {
     private Double pum;
     private String unidadMedida;
     private String pumTexto;
-    private BigDecimal porcentajeDescuento;
-
+    private BigDecimal descuento;
 }
