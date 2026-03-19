@@ -1,5 +1,6 @@
 package com.msarticulos.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,6 @@ public class PrecioDto {
     private Double pum;
     private String unidadMedida;
     private String pumTexto;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
     private BigDecimal descuento;
 }
