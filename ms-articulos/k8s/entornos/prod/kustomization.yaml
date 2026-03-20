@@ -14,6 +14,15 @@ patches:
       - op: replace
         path: /spec/tls/0/hosts/0
         value: api.coopetarrazu.com
+      
       - op: replace
         path: /spec/rules/0/host
         value: api.coopetarrazu.com
+      
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: api-ca
+      
+      - op: replace
+        path: /spec/ingressClassName
+        value: nginx-externo
