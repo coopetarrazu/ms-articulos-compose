@@ -4,9 +4,9 @@ configMapGenerator:
     behavior: merge
     literals:
       - NAME_SPACE=inventario
-      - SPRING_CLOUD_CONFIG_URI=http://ms-config-svc.articulos.svc.cluster.local
-      - MS_AUTH="http://ms-auth-svc.seguridad-dev.svc.cluster.local"
-      - SPRING_PROFILES_ACTIVE=kubernetes-prod
+      - SPRING_CLOUD_CONFIG_URI=http://ms-config-svc.inventario.svc.cluster.local
+      - MS_AUTH=http://ms-auth-svc.seguridad.svc.cluster.local
+      - SPRING_PROFILES_ACTIVE=kubernetes
 resources:
   - ../../base
 
