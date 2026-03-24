@@ -1,6 +1,7 @@
 package com.msarticulos.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class PrecioDto {
     private Double pum;
     private String unidadMedida;
     private String pumTexto;
+    @Schema(description = "Porcentaje de descuento con dos decimales", example = "20.00", pattern = "^\\d+\\.\\d{2}$")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00")
     private BigDecimal descuento;
 }
