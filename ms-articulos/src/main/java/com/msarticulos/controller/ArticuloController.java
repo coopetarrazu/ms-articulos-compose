@@ -175,7 +175,7 @@ public class ArticuloController {
                     )
             )
     })
-    @GetMapping("{unidad}/articulos")
+    @GetMapping("{unidad}/listar")
     public ResponseEntity<?> cargarArticulos(
             @Parameter(
                     description = """
