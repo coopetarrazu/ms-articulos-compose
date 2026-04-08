@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ms-articulo-compose-ingress
+  name: ms-articulos-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
@@ -21,13 +21,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ms-articulo-compose-svc
+                name: ms-articulos-svc
                 port:
                   number: 80
-          - path: /articulos/docs
+          - path: /cajas
             pathType: Prefix
             backend:
               service:
-                name: ms-articulo-compose-svc
+                name: ms-articulos-svc
                 port:
                   number: 80

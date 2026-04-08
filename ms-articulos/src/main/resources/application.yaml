@@ -1,8 +1,6 @@
 server:
   tomcat:
     connection-timeout: 10m
-  servlet:
-    context-path: /articulos
   port: 80
 spring:
   cloud:
@@ -17,14 +15,17 @@ spring:
   profiles:
     active: local
     include: native
-  config:
-    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:80}
+#  config:
+#    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:80}
+logging:
+  level:
+    feign: DEBUG
 
 springdoc:
   swagger-ui:
-    path: /docs
+    path: /articulos/docs
   api-docs:
-    path: /v3/api-docs
+    path: /articulos/v3/api-docs
 
 # Variables de servicios internos
 BUENDIA: http://ms-articulo-compose-svc.buendia-dev.svc.cluster.local
@@ -37,7 +38,7 @@ SANPABLO: http://ms-articulo-compose-svc.sanpablo-dev.svc.cluster.local
 
 #BUENDIA: http://localhost:8080
 #BODEGA: http://localhost:8080
-#FERRETERIA: http://localhost:8080
+#FERRETERIA: https://ferreteriabsj.coopetarrazu.dev
 #INSUMOS: http://localhost:8080
 #SANCARLOS: http://localhost:8080
 #RIOCONEJO: http://localhost:8080

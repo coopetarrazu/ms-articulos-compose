@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ms-articulo-compose-svc
+  name: ms-articulos-svc
 spec:
   type: ClusterIP
   selector:
-    app: ms-articulo-compose
+    app: ms-articulos
   ports:
     - protocol: TCP
       name: main

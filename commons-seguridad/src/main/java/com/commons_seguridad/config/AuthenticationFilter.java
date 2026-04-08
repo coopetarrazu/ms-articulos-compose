@@ -28,13 +28,21 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     private static final List<String> EXCLUDED_PATHS = List.of(
             "/swagger-ui",
+            "/swagger-ui/",
+            "/swagger-ui/index.html",
             "/v3/api-docs",
+            "/v3/api-docs/",
             "/swagger-config",
-            "/articulos/docs",
-            "/articulos/swagger-ui",
-            "/articulos/v3/api-docs",
 
-            "/articulos/archivo/descargar"
+            "/articulos/docs",
+            "/articulos/docs/",
+
+            "/articulos/swagger-ui",
+            "/articulos/swagger-ui/",
+            "/articulos/swagger-ui/index.html",
+
+            "/articulos/v3/api-docs",
+            "/articulos/v3/api-docs/"
  );
 
 //    /swagger-ui/index.html

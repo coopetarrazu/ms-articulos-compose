@@ -7,5 +7,13 @@ data:
   SPRING_CLOUD_CONFIG_URI: "http://ms-config-svc.articulos-dev.svc.cluster.local"
   NAME_SPACE: "inventario-dev"
   MS_AUTH: "http://ms-auth-svc.seguridad-dev.svc.cluster.local"
+  BUENDIA: "http://ms-articulo-compose-svc.buendia-dev.svc.cluster.local"
+  BODEGA: "http://ms-factura-compose-svc.bodega-dev.svc.cluster.local"
+  FERRETERIA: "http://ms-factura-compose-svc.ferreteria-dev.svc.cluster.local"
+  INSUMOS: "http://ms-factura-compose-svc.insumos-dev.svc.cluster.local"
+  SANCARLOS: "http://ms-factura-compose-svc.sancarlos-dev.svc.cluster.local"
+  RIOCONEJO: "http://ms-factura-compose-svc.rioconejo-dev.svc.cluster.local"
+  SANPABLO: "http://ms-factura-compose-svc.sanpablo-dev.svc.cluster.local"
   SPRING_PROFILES_ACTIVE: "kubernetes"
+
 

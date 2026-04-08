@@ -9,7 +9,7 @@ resources:
 patches:
   - target:
       kind: Ingress
-      name: ms-articulo-compose-ingress
+      name: ms-articulos-ingress
     patch: |-
       - op: replace
         path: /spec/tls/0/hosts/0

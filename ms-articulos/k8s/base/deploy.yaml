@@ -1,17 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ms-articulo-compose-deploy
-  namespace: inventario
+  name: ms-articulos-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ms-articulo-compose
+      app: ms-articulos
   template:
     metadata:
       labels:
-        app: ms-articulo-compose
+        app: ms-articulos
     spec:
       volumes:
         - name: truststore
@@ -19,8 +18,8 @@ spec:
             secretName: coopetarrazu-ca
 
       containers:
-        - name: ms-articulo-compose
-          image: 10.1.10.13:5000/prod/articulos/ms-articulos:v1.0.3
+        - name: ms-articulos
+          image: 10.1.10.13:5000/ms-articulos:v1.0.0
 
           envFrom:
             - configMapRef:
@@ -38,6 +37,7 @@ spec:
 
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
 
 
 

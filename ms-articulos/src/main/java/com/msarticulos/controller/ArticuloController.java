@@ -19,7 +19,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-@RestController("articulos")
+@RestController()
+@RequestMapping("articulos")
 @RequiredArgsConstructor
 @Tag(name = "Artículos", description = "Operaciones relacionadas con artículos (búsqueda, inventario y precios)")
 public class ArticuloController {

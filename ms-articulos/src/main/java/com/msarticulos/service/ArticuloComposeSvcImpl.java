@@ -3,9 +3,11 @@ package com.msarticulos.service;
 import com.msarticulos.client.*;
 import com.msarticulos.dto.*;
 import com.msarticulos.exception.ServiceException;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +27,21 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
     private final SanCarlosClientRest sanCarlosClient;
     private final SanPabloClientRest sanPabloClient;
 
+    @Value("${BUENDIA}")
+    private String buendiaUrl;
+
+    @PostConstruct
+    public void printUrl() {
+        System.out.println("BUENDIA URL = " + buendiaUrl);
+    }
+
     @Override
     public Optional<ArticuloDto> buscarPorCodigo(Integer unidad, String codigo) {
 
         try {
-
             switch (unidad) {
 
                 case 6 -> {
-
                     Optional<ArticuloDto> articulo = sanCarlosClient.buscarPorCodigo(codigo);
                     if (articulo.isEmpty()) {
                         LOGGER.error("Error al consultar la información en la unidad San Carlos del articulo con el codigo: {}", codigo);
@@ -44,9 +52,14 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
                 case 9 -> {
 
+                    LOGGER.info("Buen dia URL = {}", buendiaUrl);
+
+                    System.out.println("Buen dia URL = " + buendiaUrl);
+
                     Optional<ArticuloDto> articulo = buenDiaClient.buscarPorCodigo(codigo);
                     if (articulo.isEmpty()) {
                         LOGGER.error("Error al consultar la información en la unidad Producto Terminado del articulo con el codigo: {}", codigo);
+                        System.out.println("Buen dia URL = " + buendiaUrl);
                         throw new ServiceException("Error al consultar la información del articulo: " + codigo, HttpStatus.NOT_FOUND);
                     }
 
@@ -129,10 +142,13 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
     public Optional<PaginaDto> buscarPorDescripcion(Integer unidad, String descripcion, boolean fresco, Integer pagina) {
 
         try {
+            LOGGER.info("Buen dia URL = {}", buendiaUrl);
 
             switch (unidad) {
 
                 case 6 -> {
+
+                    LOGGER.info("Buen dia URL = {}", buendiaUrl);
 
                     Optional<PaginaDto> articulos = sanCarlosClient.buscarPorDescripcion(descripcion, fresco, pagina);
                     if (articulos.isEmpty()) {
@@ -233,9 +249,13 @@ public class ArticuloComposeSvcImpl implements ArticuloComposeSvc {
 
         try {
 
+            LOGGER.info("Buen dia URL = {}", buendiaUrl);
+
             switch (unidad) {
 
                 case 6 -> {
+
+                    LOGGER.info("Buen dia URL = {}", buendiaUrl);
 
                     List<ArticuloDto> inventario = sanCarlosClient.cargarArticulos(codigoBodega);
                     if (inventario.isEmpty()) {
