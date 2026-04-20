@@ -4,3 +4,4 @@ resources:
   - config.yaml
   - role.yaml
   - roleBinding.yaml
+  - account.yaml
