@@ -1,7 +1,7 @@
 namespace: inventario-dev
 images:
-  - name: 10.1.10.13:5000/ms-articulo-compose
-    newName: 10.1.10.13:5000/dev/articulos/ms-articulos
+  - name: harbor.coopetarrazu.com:8443/ms-articulo-compose
+    newName: harbor.coopetarrazu.com:8443/cluster/dev/articulos/ms-articulos
     newTag: v1.0.1
 resources:
   - ../../base
